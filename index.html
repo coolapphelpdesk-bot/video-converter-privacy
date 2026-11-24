@@ -65,7 +65,7 @@
   <ul>
     <li>All videos, images and audio are processed <strong>entirely on your device</strong>. None of them is ever uploaded.</li>
     <li>The app does not use the camera, the microphone, your location or your contacts.</li>
-    <li>The app shows <strong>no advertising</strong> and does not access the advertising ID.</li>
+    <li>The app includes the Google AdMob SDK, but <strong>advertising is currently switched off</strong>: the SDK is not started and no ads are requested.</li>
     <li>The only thing that ever reaches the developer is a <strong>feedback message</strong> you write and choose to send.</li>
   </ul>
 </section>
@@ -105,7 +105,8 @@
       <tr><td><code>READ_MEDIA_VIDEO</code>, <code>READ_MEDIA_IMAGES</code>, <code>READ_MEDIA_AUDIO</code>, <code>READ_MEDIA_VISUAL_USER_SELECTED</code> (Android 12 and older: <code>READ_EXTERNAL_STORAGE</code>)</td><td>List your videos in the optional in-app picker so you can choose several at once. The list is shown on your device only.</td><td>Only if you turn on the in-app picker; the app works fully without it</td></tr>
       <tr><td><code>POST_NOTIFICATIONS</code></td><td>Show conversion progress, with a Cancel button, while you use other apps</td><td>Before your first conversion (Android 13+); conversions work either way</td></tr>
       <tr><td><code>FOREGROUND_SERVICE</code> + <code>FOREGROUND_SERVICE_DATA_SYNC</code>, <code>WAKE_LOCK</code></td><td>Keep long conversions running reliably in the background</td><td>Auto-granted; used while a conversion runs</td></tr>
-      <tr><td><code>INTERNET</code> + <code>ACCESS_NETWORK_STATE</code></td><td>Send feedback you choose to send</td><td>Auto-granted (normal permission)</td></tr>
+      <tr><td><code>INTERNET</code> + <code>ACCESS_NETWORK_STATE</code></td><td>Send feedback you choose to send; advertising if it is switched on in future</td><td>Auto-granted (normal permission)</td></tr>
+      <tr><td><code>AD_ID</code> (and Android&rsquo;s ad-services permissions, added by the AdMob SDK)</td><td>Advertising, if it is switched on in future. Not used while ads are off.</td><td>Auto-granted; you can reset or delete the advertising ID in Android settings</td></tr>
     </tbody>
   </table>
 </section>
@@ -115,9 +116,10 @@
   <p>Converting, extracting audio, making GIFs and saving frames all work <strong>fully offline</strong>. The app connects to the internet only in these cases:</p>
   <ul>
     <li><strong>Feedback</strong> you send goes over HTTPS to the developer&rsquo;s own feedback service, hosted on Google Cloud. It is used only to reply to you and improve the app, and is never sold or shared.</li>
+    <li><strong>Google AdMob</strong> is included for advertising but is <strong>currently switched off</strong>: the SDK is never initialized and makes no requests. If ads are switched on in a future version, AdMob may collect the advertising ID, device information and IP address to serve ads, under <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google&rsquo;s Privacy Policy</a>, and this page will be updated first.</li>
     <li><strong>Rate this app</strong> and <strong>Get Opific</strong> open a page on Google Play; nothing is sent by the app itself.</li>
   </ul>
-  <p>The app shows <strong>no ads</strong> and contains <strong>no analytics SDKs, no crash-reporting SDKs, and no social or attribution SDKs</strong>. It shares code with the developer&rsquo;s Opific app, which includes the Google AdMob library; in Video Converter that library is never started, makes no requests and has no access to the advertising ID. Its media libraries (Media3, FFmpegKit) run entirely on-device and do not transmit data.</p>
+  <p>The app contains <strong>no analytics SDKs, no crash-reporting SDKs, and no social or attribution SDKs</strong>. Its media libraries (Media3, FFmpegKit) run entirely on-device and do not transmit data.</p>
   <p>When you share a file through the system share sheet, the app hands a local file to the app you choose. The developer does not see what you share.</p>
 </section>
 
